@@ -13,6 +13,7 @@ defaults_site:
   group: 'nobody'
   http_version: 2
   plain_site: true  # if http site (only used for redirect to https) should be created
+  plain_only: false  # only create http site (behind other proxy)
   plain_redirect: 'preserve_domain'  # keep hostname from plain request => any other value will set the redirect to the main-domain
   main_redirect: false  # redirect all requests to the primary site-domain
 

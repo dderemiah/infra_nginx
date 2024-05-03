@@ -1,5 +1,5 @@
 
-{% if site.plain_site %}
+{% if site.plain_site | bool and not site.plain_only | bool %}
 # http listener
 server {
   listen {% if site.listen != '' %}{{ site.listen }}:{% endif %}{{ site.port_plain }};

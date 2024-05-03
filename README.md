@@ -124,6 +124,8 @@ This will also be done automatically if no domain is supplied.
   For advanced use-cases you might want to set [auth_request](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) in `site.config_additions_root` that can be used to implement OAuth-Proxies and so on.
 
 
+* **Info:** You can set the `plain_only` flag to disable HTTPS. This might be nice-to-have if you are behind another proxy server.
+
 ## Usage
 
 You want a simple Ansible GUI? Check-out my [Ansible WebUI](https://github.com/ansibleguy/webui)

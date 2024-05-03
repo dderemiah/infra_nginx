@@ -1,9 +1,18 @@
 
+{% if not site.plain_only | bool %}
 # https listener
+{% endif %}
 server {
+{% if not site.plain_only | bool %}
   listen {% if site.listen != '' %}{{ site.listen }}:{% endif %}{{ site.port_ssl }} ssl {% if site.http_version | int == 2 %}http2{% elif site.http_version | int == 3 %}http3{% endif %};
-{% if NGINX_CONFIG.ipv6 and site.listen_ipv6 != '' %}
+{%   if NGINX_CONFIG.ipv6 and site.listen_ipv6 != '' %}
   listen {{ site.listen_ipv6 }}:{{ site.port_ssl }} ssl {% if site.http_version | int == 2 %}http2{% elif site.http_version | int == 3 %}http3{% endif %};
+{%   endif %}
+{% else %}
+  listen {% if site.listen != '' %}{{ site.listen }}:{% endif %}{{ site.port_plain }};
+{%   if NGINX_CONFIG.ipv6 and site.listen_ipv6 != '' %}
+  listen {{ site.listen_ipv6 }}:{{ site.port_plain }};
+{%   endif %}
 {% endif %}
   server_name {{ site.domain }}{% for alias in site.aliases %} {{ alias }}{% endfor %}{% if site.ip is not none %} {{ site.ip }}{% endif %};
 
@@ -14,7 +23,9 @@ server {
 {% endif %}
 
 {% include "inc/site_https_log.j2" %}
-{% include "inc/site_https_ssl.j2" %}
+{% if not site.plain_only | bool %}
+{%   include "inc/site_https_ssl.j2" %}
+{% endif %}
 {% include "inc/site_https_config.j2" %}
 {% include "inc/site_https_headers.j2" %}
 

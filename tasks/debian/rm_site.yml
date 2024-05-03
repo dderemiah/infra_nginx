@@ -19,7 +19,7 @@
     - "{{ NGINX_CONFIG.ssl.path }}/{{ name }}.csr"
   when: "site.ssl.mode in ['selfsigned', 'existing', 'ca']"
 
-- name: "Nginx | Remove Site '{{ name }}' | | Removing basic-auth files"
+- name: "Nginx | Remove Site '{{ name }}' | Removing basic-auth files"
   ansible.builtin.file:
     path: "{{ item }}"
     state: absent
