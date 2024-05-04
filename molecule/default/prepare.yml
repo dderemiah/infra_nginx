@@ -1,11 +1,13 @@
 ---
 
-- name: Converge
+- name: Prepare
   hosts: all
+  gather_facts: no
   tasks:
     - name: Installing test-tools
       ansible.builtin.apt:
         name: ['curl']
+        update_cache: true
 
     - name: Creating web-directories
       ansible.builtin.file:
