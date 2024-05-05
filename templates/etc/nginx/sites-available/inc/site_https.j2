@@ -88,7 +88,7 @@ server {
     # additional lines
 {% endif %}
 {% for line in site.config_additions_root | ensure_list %}
-    {{ line }}
+    {{ line }}{{ line | config_line_end }}
 {% endfor %}
 
   }
@@ -97,7 +97,7 @@ server {
   # additional lines
 {% endif %}
 {% for line in site.config_additions | ensure_list %}
-  {{ line }}
+  {{ line }}{{ line | config_line_end }}
 {% endfor %}
 
 }

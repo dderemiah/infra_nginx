@@ -83,4 +83,4 @@
   tags: [config, sites, certs, auth]
   args:
     apply:
-      tags: [config, sites]
+      tags: [sites]

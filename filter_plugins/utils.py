@@ -6,6 +6,7 @@ class FilterModule(object):
     def filters(self):
         return {
             "safe_key": self.safe_key,
+            "config_line_end": self.config_line_end,
             "ensure_list": self.ensure_list,
             "prepare_letsencrypt": self.prepare_letsencrypt,
         }
@@ -13,6 +14,10 @@ class FilterModule(object):
     @staticmethod
     def safe_key(key: str) -> str:
         return regex_replace(r'[^0-9a-zA-Z\.]+', '', key.replace(' ', '_'))
+
+    @staticmethod
+    def config_line_end(line: str) -> str:
+        return '' if line.endswith(';') else ';'
 
     @staticmethod
     def ensure_list(data: (str, list)) -> list:
