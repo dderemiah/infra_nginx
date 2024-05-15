@@ -33,7 +33,7 @@
         locality: "{{ site.ssl.ca.locality | default(NGINX_CONFIG.ssl.ca.locality, true) }}"
         email: "{{ site.ssl.ca.email | default(NGINX_CONFIG.ssl.ca.email, true) }}"
         pwd: "{{ site.ssl.ca.pwd | default(NGINX_CONFIG.ssl.ca.pwd, true) }}"
-  when: "site.ssl.mode in ['ca', 'selfsigned']"
+  when: "site.ssl.mode in ['ca', 'selfsigned', 'snakeoil', 'quick']"
   args:
     apply:
       tags: [certs, sites]

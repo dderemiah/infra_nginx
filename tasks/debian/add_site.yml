@@ -16,7 +16,7 @@
   ansible.builtin.import_tasks: add_certs.yml
   when:
     - not site.plain_only | bool
-    - "site.ssl.mode in ['selfsigned', 'existing', 'ca']"
+    - "site.ssl.mode in ['selfsigned', 'existing', 'ca', 'snakeoil', 'quick']"
   tags: [certs]
 
 # as letsencrypt generator could be skipped on previous run

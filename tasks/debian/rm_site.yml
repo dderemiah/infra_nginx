@@ -17,7 +17,7 @@
     - "{{ NGINX_CONFIG.ssl.path }}/{{ name }}.crt"
     - "{{ NGINX_CONFIG.ssl.path }}/{{ name }}.key"
     - "{{ NGINX_CONFIG.ssl.path }}/{{ name }}.csr"
-  when: "site.ssl.mode in ['selfsigned', 'existing', 'ca']"
+  when: "site.ssl.mode in ['selfsigned', 'existing', 'ca', 'snakeoil', 'quick']"
 
 - name: "Nginx | Remove Site '{{ name }}' | Removing basic-auth files"
   ansible.builtin.file:

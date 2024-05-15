@@ -10,7 +10,7 @@
   ssl_trusted_certificate '{{ NGINX_CONFIG.ssl.path }}/ca.crt';
   ssl_stapling off;
   ssl_stapling_verify off;
-{% elif site.ssl.mode == 'selfsigned' %}
+{% elif site.ssl.mode in ['selfsigned', 'snakeoil', 'quick'] %}
   ssl_stapling off;
   ssl_stapling_verify off;
 {% else %}
