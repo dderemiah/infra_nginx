@@ -30,7 +30,7 @@
   ansible.builtin.assert:
     that:
       - site.domain is defined
-      - ng_site_ssl_key.stat.exists
+      - site.plain_only or ng_site_ssl_key.stat.exists
       - not site.basic_auth.enable | bool or site.basic_auth.provider in NGINX_HC.options.basic_auth
   tags: always
 

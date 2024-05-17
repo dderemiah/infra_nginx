@@ -17,7 +17,7 @@ class FilterModule(object):
 
     @staticmethod
     def config_line_end(line: str) -> str:
-        return '' if line.endswith(';') else ';'
+        return '' if line.endswith(';') or line.endswith('}') else ';'
 
     @staticmethod
     def ensure_list(data: (str, list)) -> list:
