@@ -45,7 +45,9 @@
 
 - name: Nginx | Removing status page
   ansible.builtin.include_tasks: rm_status.yml
-  when: NGINX_CONFIG.status_page.state != 'present'
+  when:
+    - NGINX_CONFIG.status_page.state != 'present'
+    - only_site is undefined
   tags: [base, config, sites]
   args:
     apply:
