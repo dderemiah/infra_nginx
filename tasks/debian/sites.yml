@@ -39,8 +39,7 @@
     site.state != 'present' and
     (only_site is undefined or
     only_site | safe_key == name or
-    only_site | safe_key in name or
-    name in only_site | safe_key)
+    only_site == name)
   vars:
     site: "{{ defaults_site | combine(site_item.value, recursive=true) }}"
     name: "{{ site_item.key | safe_key }}"
@@ -59,7 +58,9 @@
 
 - name: Nginx | Adding status page
   ansible.builtin.include_tasks: add_status.yml
-  when: NGINX_CONFIG.status_page.state == 'present'
+  when:
+    - NGINX_CONFIG.status_page.state == 'present'
+    - only_site is undefined
   tags: [base, config, sites]
   args:
     apply:
@@ -71,8 +72,7 @@
     site.state == 'present' and
     (only_site is undefined or
     only_site | safe_key == name or
-    only_site | safe_key in name or
-    name in only_site | safe_key)
+    only_site == name)
   vars:
     site: "{{ defaults_site | combine(site_item.value, recursive=true) }}"
     name: "{{ site_item.key | safe_key }}"
