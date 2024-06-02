@@ -37,94 +37,7 @@ ansible-galaxy install -r requirements.yml
 python3 -m pip install -r requirements.txt
 ```
 
-## Functionality
-
-* **Package installation**
-  * Ansible dependencies (_minimal_)
-  * Nginx
-
-
-* **Configuration**
-  * Support for multiple sites/servers
-  * Three **config-modes**:
-    * proxy (_default_)
-    * serve
-    * redirect
-  * Support for specific configurations using the 'config' and 'config_additions' parameters
-  * Option to filter 'locations' by GeoIP => COMING SOON (:
-
-  * **Default config**:
-    * Disabled: <TLS1.2, unsecure ciphers, autoindex, servertokens
-    * Security headers: HSTS, X-Frame, Referrer-Policy, Content-Type nosniff, X-Domain-Policy, XXS-Protection
-    * Limits to prevent DDoS
-    * Using a Self-Signed certificate
-    * HTTP2 enabled with fallback to HTTP1.1
-    * IPv6 support enabled
-
-
-  * **SSL modes** (_for more info see: [CERT ROLE](https://github.com/ansibleguy/infra_certs)_)
-    * **selfsigned** => Generate self-signed ones
-    * **ca** => Generate a minimal Certificate Authority and certificate signed by it
-    * **letsencrypt** => Uses the LetsEncrypt certbot
-    * **existing** => Copy certificate files or use existing ones
-
-
-  * **Default opt-ins**:
-    * restricting methods to POST/GET/HEAD
-    * status-page listener on localhost
-    * Logging to syslog
-    * http2
-
-
-  * **Default opt-outs**:
-    * proxy-mode caching
-    * Blocking of Known Script-Bots
-    * Blocking of known Bad-Crawler-Bots
-
-## Info
-
-* **Note:** this role currently only supports debian-based systems
-
-
-* **Note:** Most of the role's functionality can be opted in or out.
-
-  For all available options - see the default-config located in the main/site defaults-file!
-
-
-* **Info:** Many variables can be set either on 'global' or 'per-site' scope.
-
-  Site config is always overruling the global one.
-
-
-* **Note:** This role expects that the site's unencrypted 'server' will only redirect to its encrypted connection.
-
-
-* **Note:** If you want all domain-names to get 'caught' by a site/server you need to add an underline '_' as alias or domain!<br>
-This will also be done automatically if no domain is supplied.
-
-
-* **Warning:** Not every setting/variable you provide will be checked for validity. Bad config might break the role!
-
-
-* **Info:** To disable default settings and headers => just set their value to: '' (_empty string_)
-
-
-* **Info:** If you are filtering web-requests via GeoIP filter using your firewall => LetsEncrypt will work with only opening port 80 to the world.
-
-  Requests other than '.well-known/acme-challenge/' are just redirected to 443.
-
-
-* **Info:** For LetsEncrypt renewal to work, you must allow outgoing connections to:
-
-  80/tcp, 443/tcp+udp to acme-v02.api.letsencrypt.org, staging-v02.api.letsencrypt.org (_debug mode_) and r3.o.lencr.org
-
-
-* **Info:** This role also supports configuring basic-auth.
-
-  For advanced use-cases you might want to set [auth_request](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) in `site.config_additions_root` that can be used to implement OAuth-Proxies and so on.
-
-
-* **Info:** You can set the `plain_only` flag to disable HTTPS. This might be nice-to-have if you are behind another proxy server.
+----
 
 ## Usage
 
@@ -230,3 +143,94 @@ To debug errors - you can set the 'debug' variable at runtime:
 ```bash
 ansible-playbook -K -D -i inventory/hosts.yml playbook.yml -e debug=yes
 ```
+
+----
+
+## Functionality
+
+* **Package installation**
+  * Ansible dependencies (_minimal_)
+  * Nginx
+
+
+* **Configuration**
+  * Support for multiple sites/servers
+  * Three **config-modes**:
+    * proxy (_default_)
+    * serve
+    * redirect
+  * Support for specific configurations using the 'config' and 'config_additions' parameters
+  * Option to filter 'locations' by GeoIP => COMING SOON (:
+
+  * **Default config**:
+    * Disabled: <TLS1.2, unsecure ciphers, autoindex, servertokens
+    * Security headers: HSTS, X-Frame, Referrer-Policy, Content-Type nosniff, X-Domain-Policy, XXS-Protection
+    * Limits to prevent DDoS
+    * Using a Self-Signed certificate
+    * HTTP2 enabled with fallback to HTTP1.1
+    * IPv6 support enabled
+
+
+  * **SSL modes** (_for more info see: [CERT ROLE](https://github.com/ansibleguy/infra_certs)_)
+    * **selfsigned** => Generate self-signed ones
+    * **ca** => Generate a minimal Certificate Authority and certificate signed by it
+    * **letsencrypt** => Uses the LetsEncrypt certbot
+    * **existing** => Copy certificate files or use existing ones
+
+
+  * **Default opt-ins**:
+    * restricting methods to POST/GET/HEAD
+    * status-page listener on localhost
+    * Logging to syslog
+    * http2
+
+
+  * **Default opt-outs**:
+    * proxy-mode caching
+    * Blocking of Known Script-Bots
+    * Blocking of known Bad-Crawler-Bots
+
+## Info
+
+* **Note:** this role currently only supports debian-based systems
+
+
+* **Note:** Most of the role's functionality can be opted in or out.
+
+  For all available options - see the default-config located in the main/site defaults-file!
+
+
+* **Info:** Many variables can be set either on 'global' or 'per-site' scope.
+
+  Site config is always overruling the global one.
+
+
+* **Note:** This role expects that the site's unencrypted 'server' will only redirect to its encrypted connection.
+
+
+* **Note:** If you want all domain-names to get 'caught' by a site/server you need to add an underline '_' as alias or domain!<br>
+This will also be done automatically if no domain is supplied.
+
+
+* **Warning:** Not every setting/variable you provide will be checked for validity. Bad config might break the role!
+
+
+* **Info:** To disable default settings and headers => just set their value to: '' (_empty string_)
+
+
+* **Info:** If you are filtering web-requests via GeoIP filter using your firewall => LetsEncrypt will work with only opening port 80 to the world.
+
+  Requests other than '.well-known/acme-challenge/' are just redirected to 443.
+
+
+* **Info:** For LetsEncrypt renewal to work, you must allow outgoing connections to:
+
+  80/tcp, 443/tcp+udp to acme-v02.api.letsencrypt.org, staging-v02.api.letsencrypt.org (_debug mode_) and r3.o.lencr.org
+
+
+* **Info:** This role also supports configuring basic-auth.
+
+  For advanced use-cases you might want to set [auth_request](http://nginx.org/en/docs/http/ngx_http_auth_request_module.html) in `site.config_additions_root` that can be used to implement OAuth-Proxies and so on.
+
+
+* **Info:** You can set the `plain_only` flag to disable HTTPS. This might be nice-to-have if you are behind another proxy server.
