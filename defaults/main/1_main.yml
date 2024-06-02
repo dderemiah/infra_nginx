@@ -12,7 +12,7 @@ defaults_nginx:
   state: 'present'
 
   ipv6: true
-  log_forwarded_for: true  # if request is received from internal IPs - log X-forwarded-for header if exists
+  log_forwarded_for: false  # if request is received from internal IPs - log X-forwarded-for header if exists
 
   status_page:
     state: 'present'
