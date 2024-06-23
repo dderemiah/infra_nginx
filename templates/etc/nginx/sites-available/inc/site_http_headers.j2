@@ -2,7 +2,7 @@
 {%   if site.headers | length > 0 %}
   # site-specific headers
 {%     for header, value in site.headers.items() %}
-{%       if value not in NONE_VALUES %}
+{%       if value not in NONE_VALUES and value|default(none, true) is not none %}
 {%         if 'header' in header %}
   {{ header }} {{ value }};
 {%         else %}
