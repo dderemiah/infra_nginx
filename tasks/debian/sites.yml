@@ -6,7 +6,7 @@
   ansible.builtin.set_fact:
     ng_letsencrypt_certs: "{{ NGINX_CONFIG.sites | prepare_letsencrypt(NGINX_CONFIG.state | default(defaults_site.state),
     NGINX_CONFIG.letsencrypt.email, only_site | default(none)) }}"
-  tags: [certs, letsencrypt]
+  tags: [certs, letsencrypt, only_certs]
 
 - name: Nginx | Getting certificates using LetsEncrypt
   ansible.builtin.include_role:
@@ -28,10 +28,10 @@
         service: 'nginx'
         renew: "{{ NGINX_CONFIG.letsencrypt.renew }}"
   no_log: true
-  tags: [certs, letsencrypt]
+  tags: [certs, letsencrypt, only_certs]
   args:
     apply:
-      tags: [certs, letsencrypt]
+      tags: [certs, letsencrypt, only_certs]
 
 - name: Nginx | Removing site
   ansible.builtin.include_tasks: rm_site.yml

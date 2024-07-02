@@ -36,7 +36,7 @@
   when: "site.ssl.mode in ['ca', 'selfsigned', 'snakeoil', 'quick']"
   args:
     apply:
-      tags: [certs, sites]
+      tags: [certs, sites, only_certs]
 
 - name: "Nginx | Site '{{ name }}' | Certs | Trying to copy cert pub"
   ansible.builtin.copy:

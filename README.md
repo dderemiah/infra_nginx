@@ -138,6 +138,7 @@ There are also some useful **tags** available:
 * certs
 * letsencrypt
 * auth
+* only_certs (can be used as skip-tag)
 
 To debug errors - you can set the 'debug' variable at runtime:
 ```bash

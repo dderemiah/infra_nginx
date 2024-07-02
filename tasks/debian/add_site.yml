@@ -17,7 +17,7 @@
   when:
     - not site.plain_only | bool
     - "site.ssl.mode in ['selfsigned', 'existing', 'ca', 'snakeoil', 'quick']"
-  tags: [certs]
+  tags: [certs, only_certs]
 
 # as letsencrypt generator could be skipped on previous run
 - name: "Nginx | Site '{{ name }}' | Checking if certificate exists"
