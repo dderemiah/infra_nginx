@@ -15,7 +15,7 @@ defaults_site:
   plain_site: true  # if http site (only used for redirect to https) should be created
   plain_only: false  # only create http site (behind other proxy)
   plain_redirect: 'preserve_domain'  # keep hostname from plain request => any other value will set the redirect to the main-domain
-  main_redirect: false  # redirect all requests to the primary site-domain
+  main_redirect: false  # redirect all requests to the primary site-domain (canonical)
 
   config: {}  # site-specific setting-value pairs
   config_additions: []  # lines that will 1-to-1 be appended to the site-config (directory config etc.)
