@@ -14,7 +14,7 @@ server {
   listen {{ site.listen_ipv6 }}:{{ site.port_plain }};
 {%   endif %}
 {% endif %}
-  server_name {{ site.domain }}{% for alias in site.aliases %} {{ alias }}{% endfor %}{% if site.ip is not none %} {{ site.ip }}{% endif %};
+  server_name {{ site.domain }}{% for alias in site.aliases|ensure_list %}{% if alias != site.domain %} {{ alias }}{% endif %}{% endfor %}{% if site.ip is not none %} {{ site.ip }}{% endif %};
 
 {% if site.main_redirect %}
   if ($host != $server_name) {

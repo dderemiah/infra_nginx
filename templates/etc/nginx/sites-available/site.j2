@@ -5,5 +5,9 @@
 proxy_cache_path {{ site.proxy.cache.path }}/site_{{ name }} levels={{ site.proxy.cache.levels }} keys_zone={{ name }}_cache:{{ site.proxy.cache.memory }} max_size={{ site.proxy.cache.max_size }} inactive={{ site.proxy.cache.inactive }} use_temp_path={{ site.proxy.cache.use_temp_path }};
 {% endif %}
 
+{% for line in site.global_additions | ensure_list %}
+{{ line }}{{ line | config_line_end }}
+{% endfor %}
+
 {% include "inc/site_http.j2" %}
 {% include "inc/site_https.j2" %}

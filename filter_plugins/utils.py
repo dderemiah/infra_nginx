@@ -8,6 +8,7 @@ class FilterModule(object):
             "safe_key": self.safe_key,
             "config_line_end": self.config_line_end,
             "ensure_list": self.ensure_list,
+            "unique_list": self.unique_list,
             "prepare_letsencrypt": self.prepare_letsencrypt,
         }
 
@@ -26,6 +27,10 @@ class FilterModule(object):
             return data
 
         return [data]
+
+    @staticmethod
+    def unique_list(data: list) -> list:
+        return list(set(data))
 
     @classmethod
     def prepare_letsencrypt(cls, sites: dict, state: str, email: str = None, only_site: str = None) -> dict:

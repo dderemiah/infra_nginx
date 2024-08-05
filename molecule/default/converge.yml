@@ -4,7 +4,7 @@
   hosts: test-ag-nginx-tester
   vars:
     dummy_ssl:
-      mode: 'ca'
+      mode: 'snakeoil'
       cert:
         cn: 'Nginx'
         org: 'AnsibleGuy Test'

@@ -21,6 +21,7 @@ defaults_site:
   config_additions: []  # lines that will 1-to-1 be appended to the site-config (directory config etc.)
   # BE AWARE that you might break the config-syntax if you're not careful
   config_additions_root: []  # lines that will 1-to-1 be appended inside 'location / {}'
+  global_additions: []  # lines that will 1-to-1 be prepended on the global 'http' level
 
   security:
     restrict_methods: true
@@ -68,7 +69,7 @@ defaults_site:
     index: ['index.html']
 
   ssl:
-    mode: 'ca'  # existing/selfsigned/ca/letsencrypt
+    mode: 'snakeoil'  # existing/selfsigned/ca/letsencrypt/snakeoil
     # existing:
     #   We expect the certs to be placed in the role's 'files' directory named like the site
     #   Example: files/certs/ansibleguy.key and files/certs/ansibleguy.crt

@@ -83,7 +83,7 @@ nginx:
         path: '/var/www/static'
 
       ssl:
-        mode: 'ca'  # create minimal ca with signed server-certificate
+        mode: 'snakeoil'
       
       config:  # add settings as key-value pairs
         LimitRequestFields: 10

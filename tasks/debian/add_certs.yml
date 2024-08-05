@@ -21,7 +21,7 @@
         locality: "{{ site.ssl.cert.locality }}"
         email: "{{ site.ssl.cert.email }}"
         crl_distribution: "{{ site.ssl.cert.crl_distribution }}"
-        domains: "{{ site.aliases + [site.domain] }}"
+        domains: "{{ ((site.aliases | ensure_list) + [site.domain]) | unique_list }}"
         ips: ["{{ site.ip }}"]
       ca:
         path: "{{ NGINX_CONFIG.ssl.path }}"
