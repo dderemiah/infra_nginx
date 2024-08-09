@@ -1,6 +1,8 @@
 from re import sub as regex_replace
 
 
+NGINX_CONF_LINE_END = [';', '{', '}']
+
 class FilterModule(object):
 
     def filters(self):
@@ -18,7 +20,11 @@ class FilterModule(object):
 
     @staticmethod
     def config_line_end(line: str) -> str:
-        return '' if line.endswith(';') or line.endswith('}') else ';'
+        for end_char in NGINX_CONF_LINE_END:
+            if line.endswith(end_char):
+                return ''
+
+        return ';'
 
     @staticmethod
     def ensure_list(data: (str, list)) -> list:
