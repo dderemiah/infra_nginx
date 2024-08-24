@@ -68,4 +68,4 @@ NGINX_HC:
         # python
         - 'scrapy'
 
-NONE_VALUES: [none, '', ' ']
+NONE_VALUES: ['', ' ']
