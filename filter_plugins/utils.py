@@ -49,7 +49,7 @@ class FilterModule(object):
             ):
 
                 try:
-                    if not site['plain_only'] and site['ssl']['mode'] == 'letsencrypt':
+                    if ('plain_only' not in site or not site['plain_only']) and site['ssl']['mode'] == 'letsencrypt':
                         _name = cls.safe_key(unsafe_name)
                         _domains = [site['domain']]
                         _state, _email, _key_size = state, email, None
