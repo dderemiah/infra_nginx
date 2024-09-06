@@ -77,14 +77,13 @@ defaults_nginx:
 
   headers:
     # if first key does not include 'header' => prepend 'add_header'
-    'Strict-Transport-Security': '"max-age=31536000; includeSubDomains" always'
-    'Referrer-Policy': 'same-origin'
+    Strict-Transport-Security: '"max-age=31536000; includeSubdomains; preload" always'
+    Referrer-Policy: 'strict-origin-when-cross-origin'  # 'same-origin' to not send referer for external links
     # 'Content-Security-Policy': "\"default-src 'self'\""  # disabled since it blocks too many common use-cases
     # 'Content-Security-Policy': "default-src 'none'; script-src 'self'; connect-src 'self'; img-src 'self'; style-src 'self';"
-    'X-Frame-Options': 'DENY'  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
-    'X-Content-Type-Options': 'nosniff'  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
-    'X-Permitted-Cross-Domain-Policies': 'none'
-    'Set-Cookie': '"Path=/;HttpOnly;Secure;SameSite=none"'
+    X-Frame-Options: 'DENY'  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Frame-Options
+    X-Content-Type-Options: 'nosniff'  # https://developer.mozilla.org/en-US/docs/Web/HTTP/Headers/X-Content-Type-Options
+    X-Permitted-Cross-Domain-Policies: 'none'
     # 'Permissions-Policy': ''
 
 debug: false
