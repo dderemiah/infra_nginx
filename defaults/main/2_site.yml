@@ -67,6 +67,8 @@ defaults_site:
   server:
     path: '/var/www/html'
     index: ['index.html']
+    e404_try_index: false  # if wrong location is entered; serve content of index-file instead of error-page
+    e404_redirect_root: false  # overwrite the 404 error-page with a redirect to the root page
 
   ssl:
     mode: 'snakeoil'  # existing/selfsigned/ca/letsencrypt/snakeoil
