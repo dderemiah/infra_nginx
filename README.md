@@ -27,10 +27,10 @@ Molecule Logs: [Short](https://badges.ansibleguy.net/log/molecule_infra_nginx_te
 ansible-galaxy role install git+https://github.com/ansibleguy/infra_nginx
 
 # from galaxy
-ansible-galaxy install ansibleguy.infra_nginx
+ansible-galaxy install infra_nginx
 
 # or to custom role-path
-ansible-galaxy install ansibleguy.infra_nginx --roles-path ./roles
+ansible-galaxy install infra_nginx --roles-path ./roles
 
 # install dependencies
 ansible-galaxy install -r requirements.yml
